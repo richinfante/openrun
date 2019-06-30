@@ -11,24 +11,36 @@ import CoreLocation
 
 class LocationProvider : NSObject, CLLocationManagerDelegate {
     
+    static var shared = LocationProvider()
+    
     let location = CLLocationManager()
     var activity : Activity?
     override init() {
         super.init()
         
         location.delegate = self
-        location.activityType = .other
-        //location.allowDeferredLocationUpdates(untilTraveled: 5, timeout: 5)
+        location.activityType = .fitness
+        location.allowDeferredLocationUpdates(untilTraveled: 15, timeout: 5)
         location.allowsBackgroundLocationUpdates = true
         location.desiredAccuracy = kCLLocationAccuracyBest
-        
-        
+    }
+    
+    func startUpdatingLocation() {
+        location.requestAlwaysAuthorization()
+        location.startUpdatingLocation()
     }
     
     func beginRecordingActivity() {
-        self.activity = Activity()
-        location.requestAlwaysAuthorization()
-        location.startUpdatingLocation()
+        if activity == nil {
+            self.activity = Activity()
+        }
+        
+        activity?.start()
+    }
+    
+    func stopRecordingActivity() {
+        activity?.stop()
+        location.stopUpdatingLocation()
     }
     
     
@@ -43,7 +55,9 @@ class LocationProvider : NSObject, CLLocationManagerDelegate {
      *    locations is an array of CLLocation objects in chronological order.
      */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//       print("got \(locations.count)")
+        print("[locationmanager] got \(locations.count) locations")
+        guard let activity = activity else { return }
+//
         if locations.count > 0 {
             print("coord: \(locations[0].coordinate)")
             print("alt: \(locations[0].altitude)")
@@ -53,7 +67,7 @@ class LocationProvider : NSObject, CLLocationManagerDelegate {
         }
         
         for item in locations {
-            activity?.add(data: item)
+            activity.add(point: item)
         }
     }
     
@@ -178,7 +192,7 @@ class LocationProvider : NSObject, CLLocationManagerDelegate {
      *    Invoked when the authorization status changes for this application.
      */
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print(status)
+        print(String(describing: status))
         if status == .authorizedAlways || status == .authorizedWhenInUse {
             location.startUpdatingLocation()
             print("Starting...")

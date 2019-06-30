@@ -10,6 +10,8 @@
 		9B18B4B920B662100044F5FF /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18B4B820B662100044F5FF /* Activity.swift */; };
 		9B18B4BB20B6623E0044F5FF /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18B4BA20B6623E0044F5FF /* LocationProvider.swift */; };
 		9B18B4BD20B668380044F5FF /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18B4BC20B668380044F5FF /* ProgressViewController.swift */; };
+		9B3DA48820B87B2E005BE241 /* UITheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3DA48720B87B2E005BE241 /* UITheme.swift */; };
+		9B6CDF7A20B79E9A00EAC513 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6CDF7920B79E9A00EAC513 /* HistoryViewController.swift */; };
 		9BA2433020B64A5C00C6BD83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA2432F20B64A5B00C6BD83 /* AppDelegate.swift */; };
 		9BA2433720B64A5C00C6BD83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BA2433520B64A5C00C6BD83 /* Main.storyboard */; };
 		9BA2433920B64A5D00C6BD83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BA2433820B64A5D00C6BD83 /* Assets.xcassets */; };
@@ -21,6 +23,7 @@
 		9BA2435A20B6513500C6BD83 /* SolidButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA2435920B6513500C6BD83 /* SolidButton.swift */; };
 		9BA2435C20B654DB00C6BD83 /* ActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA2435B20B654DB00C6BD83 /* ActivityCollectionViewCell.swift */; };
 		9BA2436020B655F500C6BD83 /* ActivityDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA2435F20B655F500C6BD83 /* ActivityDataSource.swift */; };
+		9BC32DD122C84E5D0090E924 /* about.md in Resources */ = {isa = PBXBuildFile; fileRef = 9BC32DD022C84E5D0090E924 /* about.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,8 @@
 		9B18B4B820B662100044F5FF /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		9B18B4BA20B6623E0044F5FF /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		9B18B4BC20B668380044F5FF /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
+		9B3DA48720B87B2E005BE241 /* UITheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITheme.swift; sourceTree = "<group>"; };
+		9B6CDF7920B79E9A00EAC513 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		9BA2432C20B64A5B00C6BD83 /* openrun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openrun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BA2432F20B64A5B00C6BD83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9BA2433620B64A5C00C6BD83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,6 +57,7 @@
 		9BA2435920B6513500C6BD83 /* SolidButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolidButton.swift; sourceTree = "<group>"; };
 		9BA2435B20B654DB00C6BD83 /* ActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewCell.swift; sourceTree = "<group>"; };
 		9BA2435F20B655F500C6BD83 /* ActivityDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDataSource.swift; sourceTree = "<group>"; };
+		9BC32DD022C84E5D0090E924 /* about.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = about.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				9BA2432F20B64A5B00C6BD83 /* AppDelegate.swift */,
+				9B3DA48720B87B2E005BE241 /* UITheme.swift */,
 				9BA2435120B64CBC00C6BD83 /* Controllers.swift */,
 				9BA2435920B6513500C6BD83 /* SolidButton.swift */,
 				9BA2435520B64EE000C6BD83 /* NewActivityViewController.swift */,
@@ -102,11 +109,13 @@
 				9B18B4BA20B6623E0044F5FF /* LocationProvider.swift */,
 				9B18B4BC20B668380044F5FF /* ProgressViewController.swift */,
 				9BA2435B20B654DB00C6BD83 /* ActivityCollectionViewCell.swift */,
+				9B6CDF7920B79E9A00EAC513 /* HistoryViewController.swift */,
 				9BA2433520B64A5C00C6BD83 /* Main.storyboard */,
 				9BA2433820B64A5D00C6BD83 /* Assets.xcassets */,
 				9BA2433A20B64A5D00C6BD83 /* LaunchScreen.storyboard */,
 				9BA2433D20B64A5D00C6BD83 /* Info.plist */,
 				9BA2435720B6507400C6BD83 /* UIColor.swift */,
+				9BC32DD022C84E5D0090E924 /* about.md */,
 			);
 			path = openrun;
 			sourceTree = "<group>";
@@ -208,6 +217,7 @@
 			files = (
 				9BA2433C20B64A5D00C6BD83 /* LaunchScreen.storyboard in Resources */,
 				9BA2433920B64A5D00C6BD83 /* Assets.xcassets in Resources */,
+				9BC32DD122C84E5D0090E924 /* about.md in Resources */,
 				9BA2433720B64A5C00C6BD83 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,9 +241,11 @@
 				9BA2436020B655F500C6BD83 /* ActivityDataSource.swift in Sources */,
 				9B18B4BB20B6623E0044F5FF /* LocationProvider.swift in Sources */,
 				9BA2435C20B654DB00C6BD83 /* ActivityCollectionViewCell.swift in Sources */,
+				9B6CDF7A20B79E9A00EAC513 /* HistoryViewController.swift in Sources */,
 				9B18B4BD20B668380044F5FF /* ProgressViewController.swift in Sources */,
 				9BA2435220B64CBC00C6BD83 /* Controllers.swift in Sources */,
 				9BA2435A20B6513500C6BD83 /* SolidButton.swift in Sources */,
+				9B3DA48820B87B2E005BE241 /* UITheme.swift in Sources */,
 				9B18B4B920B662100044F5FF /* Activity.swift in Sources */,
 				9BA2435620B64EE000C6BD83 /* NewActivityViewController.swift in Sources */,
 			);

@@ -8,17 +8,20 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 class NewActivityViewController : UIViewController {
     @IBOutlet weak var collectionView : UICollectionView!
+    @IBOutlet weak var mapView : MKMapView!
     
     let ds = ActivityDataSource()
-    var lm : LocationProvider?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(grayscale: 0.15, alpha: 1)
+        LocationProvider.shared.startUpdatingLocation()
+        
+        self.view.backgroundColor = UITheme.current.backgroundColor
         self.title = "Activity"
         
         
@@ -27,11 +30,18 @@ class NewActivityViewController : UIViewController {
         collectionView.isOpaque = false
         collectionView.backgroundColor = UIColor.clear
         collectionView.showsHorizontalScrollIndicator = true
+        
+        if let loc = LocationProvider.shared.location.location {
+            
+            mapView.setCenter(loc.coordinate, animated: true)
+            let reigon = MKCoordinateRegionMakeWithDistance(loc.coordinate, 25, 25)
+            mapView.setRegion(reigon, animated: true)
+            mapView.setUserTrackingMode(.follow, animated: true)
+
+        }
     }
     
     @IBAction func location() {
-        lm = LocationProvider()
-        lm?.beginRecordingActivity()
         
         let vc = storyboard?.instantiateViewController(withIdentifier: "ProgressVC") as! UIViewController
         self.present(vc, animated: true, completion: nil)

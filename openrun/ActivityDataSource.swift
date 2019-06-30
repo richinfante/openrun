@@ -40,7 +40,7 @@ class ActivityDataSource : NSObject, UICollectionViewDataSource, UICollectionVie
         cell.imageView.contentMode = .scaleAspectFit
         
         if indexPath.item == selectedIndex {
-            cell.imageView.tintColor = UIColor.green
+            cell.imageView.tintColor = UIColor.white
             cell.backgroundColor = UIColor(grayscale: 0.2, alpha: 1)
             cell.clipsToBounds = true
             cell.layer.cornerRadius = 5
@@ -56,7 +56,7 @@ class ActivityDataSource : NSObject, UICollectionViewDataSource, UICollectionVie
         cell.titleLabel.text = types[indexPath.item].0
         
         if indexPath.item == selectedIndex {
-            cell.titleLabel.textColor = UIColor.green
+            cell.titleLabel.textColor = UIColor.white
         } else {
             cell.titleLabel.textColor = UIColor(grayscale: 0.5, alpha: 1)
         }

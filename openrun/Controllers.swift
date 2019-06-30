@@ -15,8 +15,8 @@ class OpenRunTabBarController : UITabBarController {
         super.viewDidLoad()
 
         // Perform base style changes.
-        self.tabBar.barStyle = .blackOpaque
-        self.tabBar.isTranslucent = false
+        self.tabBar.barStyle = UITheme.current.barStyle
+        self.tabBar.isTranslucent = UITheme.current.barTranslucent
     }
 }
 
@@ -25,8 +25,8 @@ class OpenRunNavigationController : UINavigationController {
         super.viewDidLoad()
         
         // Perform base style changes.
-        self.navigationBar.barStyle = .blackOpaque
-        self.navigationBar.isTranslucent = false
+        self.navigationBar.barStyle = UITheme.current.barStyle
+        self.navigationBar.isTranslucent = UITheme.current.barTranslucent
 
     }
 }
