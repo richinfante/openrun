@@ -22,6 +22,7 @@ class UITheme {
     var backgroundColor = UIColor(grayscale: 0.15, alpha: 1)
     var accentColor = UIColor(grayscale: 0.2, alpha: 1)
     var labelColor = UIColor.white
+    var mutedLabelColor = UIColor.gray
 }
 
 extension UITheme {

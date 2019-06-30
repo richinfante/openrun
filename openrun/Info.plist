@@ -28,6 +28,8 @@
 	<string>We use your location to track your activities</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We use your location to track your activities</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>We use your media library to display music</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
