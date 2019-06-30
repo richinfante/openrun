@@ -1,4 +1,4 @@
-# openrun
+# openrun (iOS)
 A private run tracking app - no telemetry, web services, or sharing.
 
 ## Primary Goals of this project
