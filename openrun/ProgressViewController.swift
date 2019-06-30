@@ -101,7 +101,7 @@ class ProgressViewController : UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.tick), userInfo: nil, repeats: true)
         
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .duckOthers)
+            try AVAudioSession.sharedInstance().setCategory(.playback, options: .duckOthers)
             try AVAudioSession.sharedInstance().setActive(true)
             
         } catch {
@@ -179,7 +179,7 @@ class ProgressViewController : UIViewController {
             
             if travelledDistance > lastSplit {
                 do {
-                    try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: .duckOthers)
+                    try AVAudioSession.sharedInstance().setCategory(.playback, options: .duckOthers)
                     try AVAudioSession.sharedInstance().setActive(true)
                     
                 } catch {
@@ -209,7 +209,7 @@ class ProgressViewController : UIViewController {
 extension ProgressViewController : AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         do {
-            try AVAudioSession.sharedInstance().setActive(false, with: .notifyOthersOnDeactivation)
+            try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
         } catch {
             print(error)
         }

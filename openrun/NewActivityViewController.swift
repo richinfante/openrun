@@ -34,7 +34,7 @@ class NewActivityViewController : UIViewController {
         if let loc = LocationProvider.shared.location.location {
             
             mapView.setCenter(loc.coordinate, animated: true)
-            let reigon = MKCoordinateRegionMakeWithDistance(loc.coordinate, 25, 25)
+            let reigon = MKCoordinateRegion.init(center: loc.coordinate, latitudinalMeters: 25, longitudinalMeters: 25)
             mapView.setRegion(reigon, animated: true)
             mapView.setUserTrackingMode(.follow, animated: true)
 
