@@ -10,6 +10,14 @@
 		9B18B4B920B662100044F5FF /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18B4B820B662100044F5FF /* Activity.swift */; };
 		9B18B4BB20B6623E0044F5FF /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18B4BA20B6623E0044F5FF /* LocationProvider.swift */; };
 		9B18B4BD20B668380044F5FF /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B18B4BC20B668380044F5FF /* ProgressViewController.swift */; };
+		9B19C5A122C852BC0091F069 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9B19C59922C852BC0091F069 /* OFL.txt */; };
+		9B19C5A222C852BC0091F069 /* Anonymous Pro B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B19C59A22C852BC0091F069 /* Anonymous Pro B.ttf */; };
+		9B19C5A322C852BC0091F069 /* Anonymous Pro BI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B19C59B22C852BC0091F069 /* Anonymous Pro BI.ttf */; };
+		9B19C5A422C852BC0091F069 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9B19C59C22C852BC0091F069 /* README.txt */; };
+		9B19C5A522C852BC0091F069 /* FONTLOG.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9B19C59D22C852BC0091F069 /* FONTLOG.txt */; };
+		9B19C5A622C852BC0091F069 /* OFL-FAQ.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9B19C59E22C852BC0091F069 /* OFL-FAQ.txt */; };
+		9B19C5A722C852BC0091F069 /* Anonymous Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B19C59F22C852BC0091F069 /* Anonymous Pro.ttf */; };
+		9B19C5A822C852BC0091F069 /* Anonymous Pro I.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B19C5A022C852BC0091F069 /* Anonymous Pro I.ttf */; };
 		9B3DA48820B87B2E005BE241 /* UITheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3DA48720B87B2E005BE241 /* UITheme.swift */; };
 		9B6CDF7A20B79E9A00EAC513 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6CDF7920B79E9A00EAC513 /* HistoryViewController.swift */; };
 		9BA2433020B64A5C00C6BD83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA2432F20B64A5B00C6BD83 /* AppDelegate.swift */; };
@@ -40,6 +48,14 @@
 		9B18B4B820B662100044F5FF /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		9B18B4BA20B6623E0044F5FF /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		9B18B4BC20B668380044F5FF /* ProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
+		9B19C59922C852BC0091F069 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		9B19C59A22C852BC0091F069 /* Anonymous Pro B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Anonymous Pro B.ttf"; sourceTree = "<group>"; };
+		9B19C59B22C852BC0091F069 /* Anonymous Pro BI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Anonymous Pro BI.ttf"; sourceTree = "<group>"; };
+		9B19C59C22C852BC0091F069 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		9B19C59D22C852BC0091F069 /* FONTLOG.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FONTLOG.txt; sourceTree = "<group>"; };
+		9B19C59E22C852BC0091F069 /* OFL-FAQ.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "OFL-FAQ.txt"; sourceTree = "<group>"; };
+		9B19C59F22C852BC0091F069 /* Anonymous Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Anonymous Pro.ttf"; sourceTree = "<group>"; };
+		9B19C5A022C852BC0091F069 /* Anonymous Pro I.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Anonymous Pro I.ttf"; sourceTree = "<group>"; };
 		9B3DA48720B87B2E005BE241 /* UITheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITheme.swift; sourceTree = "<group>"; };
 		9B6CDF7920B79E9A00EAC513 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		9BA2432C20B64A5B00C6BD83 /* openrun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openrun.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +94,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B19C59722C852A90091F069 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9B19C59822C852AF0091F069 /* anonymous */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		9B19C59822C852AF0091F069 /* anonymous */ = {
+			isa = PBXGroup;
+			children = (
+				9B19C59A22C852BC0091F069 /* Anonymous Pro B.ttf */,
+				9B19C59B22C852BC0091F069 /* Anonymous Pro BI.ttf */,
+				9B19C5A022C852BC0091F069 /* Anonymous Pro I.ttf */,
+				9B19C59F22C852BC0091F069 /* Anonymous Pro.ttf */,
+				9B19C59D22C852BC0091F069 /* FONTLOG.txt */,
+				9B19C59E22C852BC0091F069 /* OFL-FAQ.txt */,
+				9B19C59922C852BC0091F069 /* OFL.txt */,
+				9B19C59C22C852BC0091F069 /* README.txt */,
+			);
+			path = anonymous;
+			sourceTree = "<group>";
+		};
 		9BA2432320B64A5B00C6BD83 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +138,7 @@
 		9BA2432E20B64A5B00C6BD83 /* openrun */ = {
 			isa = PBXGroup;
 			children = (
+				9B19C59722C852A90091F069 /* fonts */,
 				9BA2432F20B64A5B00C6BD83 /* AppDelegate.swift */,
 				9B3DA48720B87B2E005BE241 /* UITheme.swift */,
 				9BA2435120B64CBC00C6BD83 /* Controllers.swift */,
@@ -215,10 +255,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B19C5A122C852BC0091F069 /* OFL.txt in Resources */,
+				9B19C5A222C852BC0091F069 /* Anonymous Pro B.ttf in Resources */,
 				9BA2433C20B64A5D00C6BD83 /* LaunchScreen.storyboard in Resources */,
+				9B19C5A722C852BC0091F069 /* Anonymous Pro.ttf in Resources */,
 				9BA2433920B64A5D00C6BD83 /* Assets.xcassets in Resources */,
 				9BC32DD122C84E5D0090E924 /* about.md in Resources */,
+				9B19C5A522C852BC0091F069 /* FONTLOG.txt in Resources */,
 				9BA2433720B64A5C00C6BD83 /* Main.storyboard in Resources */,
+				9B19C5A422C852BC0091F069 /* README.txt in Resources */,
+				9B19C5A322C852BC0091F069 /* Anonymous Pro BI.ttf in Resources */,
+				9B19C5A822C852BC0091F069 /* Anonymous Pro I.ttf in Resources */,
+				9B19C5A622C852BC0091F069 /* OFL-FAQ.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

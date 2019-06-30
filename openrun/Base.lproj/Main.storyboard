@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Anonymous Pro.ttf">
+            <string>AnonymousPro</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Open Run Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -74,6 +77,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNo-rv-Eay">
+                                <rect key="frame" x="16" y="421" width="343" height="164"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="164" id="exY-ab-lpb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AnonymousPro" family="Anonymous Pro" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -89,13 +101,17 @@
                             <constraint firstItem="Lf5-kQ-Acj" firstAttribute="leading" secondItem="RCK-KP-iVO" secondAttribute="leading" id="eJE-rB-iYS"/>
                             <constraint firstItem="RCK-KP-iVO" firstAttribute="trailing" secondItem="qbN-QN-WwV" secondAttribute="trailing" id="eT8-Qk-C1E"/>
                             <constraint firstItem="nCD-Ue-5dB" firstAttribute="trailing" secondItem="Lf5-kQ-Acj" secondAttribute="trailing" id="lzX-ye-5rR"/>
+                            <constraint firstItem="hNo-rv-Eay" firstAttribute="trailing" secondItem="qbN-QN-WwV" secondAttribute="trailing" id="m4P-8N-LnP"/>
+                            <constraint firstItem="hNo-rv-Eay" firstAttribute="leading" secondItem="Jdi-Vm-mIp" secondAttribute="leading" id="nG5-l3-Eic"/>
                             <constraint firstItem="nCD-Ue-5dB" firstAttribute="leading" secondItem="Lf5-kQ-Acj" secondAttribute="leading" id="rNB-pR-G2l"/>
                             <constraint firstItem="Lf5-kQ-Acj" firstAttribute="top" secondItem="nCD-Ue-5dB" secondAttribute="bottom" constant="54" id="rZc-cc-31C"/>
                             <constraint firstItem="Jdi-Vm-mIp" firstAttribute="baseline" secondItem="qbN-QN-WwV" secondAttribute="firstBaseline" id="veK-Td-cco"/>
+                            <constraint firstItem="Jdi-Vm-mIp" firstAttribute="top" secondItem="hNo-rv-Eay" secondAttribute="bottom" constant="8" symbolic="YES" id="vkO-YH-V5L"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="prQ-oi-BkV"/>
                     </view>
                     <connections>
+                        <outlet property="debugLabel" destination="hNo-rv-Eay" id="D7X-AH-beH"/>
                         <outlet property="distanceLabel" destination="Lf5-kQ-Acj" id="pp1-I6-vbG"/>
                         <outlet property="mileTimeLabel" destination="RCK-KP-iVO" id="7go-MH-JtA"/>
                         <outlet property="pauseButton" destination="qbN-QN-WwV" id="MpT-8m-o5H"/>
@@ -142,7 +158,7 @@
                                     <action selector="location" destination="hMy-5E-qVp" eventType="touchUpInside" id="MGF-tm-9Hr"/>
                                 </connections>
                             </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jmr-rG-PHn">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jmr-rG-PHn">
                                 <rect key="frame" x="0.0" y="64" width="375" height="337"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </mapView>

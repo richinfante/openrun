@@ -15,6 +15,8 @@ class ProgressViewController : UIViewController {
     @IBOutlet weak var timerLabel : UILabel!
     @IBOutlet weak var distanceLabel : UILabel!
     @IBOutlet weak var mileTimeLabel : UILabel!
+    @IBOutlet weak var debugLabel : UILabel!
+    
     @IBOutlet weak var stopButton : SolidButton!
     @IBOutlet weak var pauseButton : SolidButton!
     
@@ -34,6 +36,7 @@ class ProgressViewController : UIViewController {
         self.timerLabel.textColor = UIColor.white
         self.distanceLabel.textColor = UIColor.white
         self.mileTimeLabel.textColor = UIColor.white
+        self.debugLabel.textColor = UIColor.white
         self.view.backgroundColor = UIColor(grayscale: 0.15, alpha: 1)
         
         self.stopButton.backgroundColor = UIColor(red: 1, green: 59.0 / 255.0, blue: 48.0 / 255.0, alpha: 1)
@@ -65,7 +68,11 @@ class ProgressViewController : UIViewController {
         let lm = LocationProvider.shared
         
         
-        
+        if let coordinate = lm.location.location {
+            self.debugLabel.text = "Samples: \(LocationProvider.shared.activity?.data.count ?? 0)\nLat:\(coordinate.coordinate.latitude),\nLng:\(coordinate.coordinate.longitude),\nAlt:\(coordinate.altitude)"
+        } else {
+            self.debugLabel.text = "Location Unknown"
+        }
         let elapsed = Int(lm.activity?.elapsedTime ?? 0)
         
         let min = Int(floor(Double(elapsed) / 60.0))
@@ -76,11 +83,12 @@ class ProgressViewController : UIViewController {
         let metric = false
         var travelledDistance : Double!
         if metric {
-            travelledDistance = floor(lm.activity?.totalDistance ?? 0) / 1000
-            self.distanceLabel.text = "\(floor(lm.activity?.totalDistance ?? 0) / 1000)km"
+            travelledDistance = floor(lm.activity?.totalDistance ?? 0) / 1000.0
+            self.distanceLabel.text = "\(floor(lm.activity?.totalDistance ?? 0) / 1000.0)km"
         } else {
-            travelledDistance = round((floor(lm.activity?.totalDistance ?? 0) / 5280) * 1000) / 1000
-            self.distanceLabel.text = "\(round((floor(lm.activity?.totalDistance ?? 0) / 5280) * 1000) / 1000)mi"
+            travelledDistance = round((floor(lm.activity?.totalDistance ?? 0) / 5280.0) * 1000.0) / 1000.0
+            let td = floor(lm.activity?.totalDistance ?? 0)
+            self.distanceLabel.text = "\(round((td / 5280.0) * 1000.0) / 1000.0)mi"
         }
         
         /*
@@ -110,7 +118,7 @@ class ProgressViewController : UIViewController {
         }
         
         
-        self.stopButton.setTitle("\(LocationProvider.shared.activity?.data.count ?? 0) samples (STOP)", for: .normal)
+//        self.stopButton.setTitle("\(LocationProvider.shared.activity?.data.count ?? 0) samples (STOP)", for: .normal)
         /*
         if let lkp = lm.activity?.lastKnownPosition {
             self.mileTimeLabel.font = UIFont.systemFont(ofSize: 12)
