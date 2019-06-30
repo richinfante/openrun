@@ -55,10 +55,18 @@ class ProgressViewController : UIViewController {
         MPMusicPlayerController.systemMusicPlayer.skipToPreviousItem()
     }
     
+    var recognizer : UITapGestureRecognizer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Progress"
+        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(self.toggleDebug))
+        recognizer.numberOfTapsRequired = 5
+        self.timerLabel.addGestureRecognizer(recognizer)
+        self.timerLabel.isUserInteractionEnabled = true
+        self.recognizer = recognizer
         
         self.timerLabel.textColor = UIColor.white
         self.distanceLabel.textColor = UIColor.white
@@ -74,6 +82,7 @@ class ProgressViewController : UIViewController {
         self.playButton.tintColor = UIColor.white
         self.nextButton.tintColor = UIColor.white
         self.previousButton.tintColor = UIColor.white
+        self.debugLabel.isHidden = true
 //        self.nowPlayingBackgound.layer.borderColor = UIColor.gray.cgColor
 //        self.nowPlayingBackgound.layer.borderWidth = 1
         
@@ -117,6 +126,10 @@ class ProgressViewController : UIViewController {
         speechSynthesizer.speak(speechUtterance)
         
  
+    }
+    
+    @objc 2func toggleDebug() {
+        self.debugLabel.isHidden = !self.debugLabel.isHidden
     }
     
     @objc func tick() {
