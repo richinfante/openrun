@@ -110,7 +110,7 @@ class ProgressViewController : UIViewController {
         self.albumArtwork.layer.cornerRadius = 5
         self.albumArtwork.layer.masksToBounds = true
         self.nowPlayingBackgound.backgroundColor = UIColor.darkGray
-//        self.playButton.tintColor = UIColor.white
+        self.playButton.tintColor = UIColor.white 
 //        self.nextButton.tintColor = UIColor.white
 //        self.previousButton.tintColor = UIColor.white
         self.debugLabel.isHidden = true
