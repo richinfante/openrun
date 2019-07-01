@@ -42,7 +42,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCD-Ue-5dB">
-                                <rect key="frame" x="16" y="115" width="343" height="95.5"/>
+                                <rect key="frame" x="16" y="115" width="343" height="96"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="80"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -59,7 +59,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7:25 min/mi" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="RCK-KP-iVO">
-                                <rect key="frame" x="16" y="271.5" width="343" height="60"/>
+                                <rect key="frame" x="16" y="272" width="343" height="60"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -71,7 +71,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0mi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lf5-kQ-Acj">
-                                <rect key="frame" x="16" y="211.5" width="343" height="60"/>
+                                <rect key="frame" x="16" y="212" width="343" height="60"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -120,8 +120,14 @@
                                             <action selector="nextSong" destination="jPr-Rx-SNM" eventType="touchUpInside" id="zIh-sb-7d5"/>
                                         </connections>
                                     </button>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GpK-Yc-mf9">
+                                        <rect key="frame" x="105" y="48" width="230" height="2"/>
+                                        <color key="progressTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </progressView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="GpK-Yc-mf9" firstAttribute="trailing" secondItem="laB-9G-3yK" secondAttribute="trailing" id="1FL-5p-tPl"/>
                                     <constraint firstItem="8XF-AG-hPN" firstAttribute="top" secondItem="ftg-Ii-oZg" secondAttribute="top" id="5HJ-Px-4Dl"/>
                                     <constraint firstAttribute="trailing" secondItem="laB-9G-3yK" secondAttribute="trailing" constant="9" id="67u-3N-ufc"/>
                                     <constraint firstItem="laB-9G-3yK" firstAttribute="trailing" secondItem="ftg-Ii-oZg" secondAttribute="trailing" id="6N8-X1-coH"/>
@@ -129,9 +135,11 @@
                                     <constraint firstItem="dwd-Ws-RSh" firstAttribute="trailing" secondItem="laB-9G-3yK" secondAttribute="trailing" id="BO2-c3-RVZ"/>
                                     <constraint firstItem="dwd-Ws-RSh" firstAttribute="leading" secondItem="58w-4J-aGb" secondAttribute="trailing" constant="8" symbolic="YES" id="Bk3-Bx-gJ2"/>
                                     <constraint firstItem="8XF-AG-hPN" firstAttribute="leading" secondItem="ai5-nT-RgE" secondAttribute="trailing" constant="42" id="D4n-qh-SDb"/>
+                                    <constraint firstItem="GpK-Yc-mf9" firstAttribute="leading" secondItem="laB-9G-3yK" secondAttribute="leading" id="Eag-EQ-Tuz"/>
                                     <constraint firstItem="dwd-Ws-RSh" firstAttribute="top" secondItem="CZl-60-x3Q" secondAttribute="top" constant="8" id="Efu-7z-3qf"/>
                                     <constraint firstItem="58w-4J-aGb" firstAttribute="top" secondItem="CZl-60-x3Q" secondAttribute="top" constant="8" id="LfD-E2-r48"/>
                                     <constraint firstItem="laB-9G-3yK" firstAttribute="top" secondItem="dwd-Ws-RSh" secondAttribute="bottom" constant="1" id="RWH-rh-ivO"/>
+                                    <constraint firstItem="GpK-Yc-mf9" firstAttribute="top" secondItem="ftg-Ii-oZg" secondAttribute="top" id="XnE-Zq-uml"/>
                                     <constraint firstItem="dwd-Ws-RSh" firstAttribute="top" secondItem="58w-4J-aGb" secondAttribute="top" id="ZtQ-cC-mnZ"/>
                                     <constraint firstItem="58w-4J-aGb" firstAttribute="leading" secondItem="CZl-60-x3Q" secondAttribute="leading" constant="8" id="beT-pj-69t"/>
                                     <constraint firstItem="laB-9G-3yK" firstAttribute="centerX" secondItem="8XF-AG-hPN" secondAttribute="centerX" id="hL4-pB-jaS"/>
@@ -189,6 +197,7 @@
                         <outlet property="pauseButton" destination="qbN-QN-WwV" id="MpT-8m-o5H"/>
                         <outlet property="playButton" destination="8XF-AG-hPN" id="68d-jt-v6U"/>
                         <outlet property="previousButton" destination="ai5-nT-RgE" id="a7H-nP-YeS"/>
+                        <outlet property="progressBar" destination="GpK-Yc-mf9" id="6fb-9K-h1j"/>
                         <outlet property="stopButton" destination="Jdi-Vm-mIp" id="R3F-TL-8n8"/>
                         <outlet property="timerLabel" destination="nCD-Ue-5dB" id="zu8-pa-7oS"/>
                         <outlet property="trackMeta" destination="laB-9G-3yK" id="PjK-2a-GUN"/>

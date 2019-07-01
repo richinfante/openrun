@@ -13,21 +13,27 @@ class LocationProvider : NSObject, CLLocationManagerDelegate {
     
     static var shared = LocationProvider()
     
-    let location = CLLocationManager()
+    var location : CLLocationManager?
     var activity : Activity?
     override init() {
         super.init()
-        
+    }
+    
+    func configureLocationProvider() {
+        let location = CLLocationManager()
         location.delegate = self
         location.activityType = .fitness
-//        location.allowDeferredLocationUpdates(untilTraveled: 15, timeout: 5)
+        location.allowDeferredLocationUpdates(untilTraveled: 10 /* m */, timeout: 10 /* s */)
         location.allowsBackgroundLocationUpdates = true
         location.desiredAccuracy = kCLLocationAccuracyBest
+        self.location = location
     }
     
     func startUpdatingLocation() {
-        location.requestAlwaysAuthorization()
-        location.startUpdatingLocation()
+        location?.stopUpdatingLocation()
+        self.configureLocationProvider()
+        location?.requestAlwaysAuthorization()
+        location?.startUpdatingLocation()
     }
     
     func beginRecordingActivity() {
@@ -36,11 +42,12 @@ class LocationProvider : NSObject, CLLocationManagerDelegate {
         }
         
         activity?.start()
+        location?.startUpdatingLocation()
     }
     
     func stopRecordingActivity() {
+        location?.stopUpdatingLocation()
         activity?.stop()
-        location.stopUpdatingLocation()
     }
     
     
@@ -194,7 +201,7 @@ class LocationProvider : NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         print(String(describing: status))
         if status == .authorizedAlways || status == .authorizedWhenInUse {
-            location.startUpdatingLocation()
+            location?.startUpdatingLocation()
             print("Starting...")
         }
     }

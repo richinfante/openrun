@@ -31,7 +31,7 @@ class NewActivityViewController : UIViewController {
         collectionView.backgroundColor = UIColor.clear
         collectionView.showsHorizontalScrollIndicator = true
         
-        if let loc = LocationProvider.shared.location.location {
+        if let loc = LocationProvider.shared.location?.location {
             
             mapView.setCenter(loc.coordinate, animated: true)
             let reigon = MKCoordinateRegion.init(center: loc.coordinate, latitudinalMeters: 25, longitudinalMeters: 25)
