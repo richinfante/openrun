@@ -20,7 +20,7 @@ class LocationProvider : NSObject, CLLocationManagerDelegate {
         
         location.delegate = self
         location.activityType = .fitness
-        location.allowDeferredLocationUpdates(untilTraveled: 15, timeout: 5)
+//        location.allowDeferredLocationUpdates(untilTraveled: 15, timeout: 5)
         location.allowsBackgroundLocationUpdates = true
         location.desiredAccuracy = kCLLocationAccuracyBest
     }

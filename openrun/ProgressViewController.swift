@@ -45,14 +45,17 @@ class ProgressViewController : UIViewController {
         } else {
             MPMusicPlayerController.systemMusicPlayer.play()
         }
+        self.updateNowPlaying()
     }
     
     @IBAction func nextSong() {
         MPMusicPlayerController.systemMusicPlayer.skipToNextItem()
+        self.updateNowPlaying()
     }
     
     @IBAction func previousSong() {
         MPMusicPlayerController.systemMusicPlayer.skipToPreviousItem()
+        self.updateNowPlaying()
     }
     
     var recognizer : UITapGestureRecognizer?
@@ -83,6 +86,7 @@ class ProgressViewController : UIViewController {
         self.nextButton.tintColor = UIColor.white
         self.previousButton.tintColor = UIColor.white
         self.debugLabel.isHidden = true
+
 //        self.nowPlayingBackgound.layer.borderColor = UIColor.gray.cgColor
 //        self.nowPlayingBackgound.layer.borderWidth = 1
         
@@ -94,16 +98,7 @@ class ProgressViewController : UIViewController {
         self.pauseButton.backgroundColor = UIColor(grayscale: 0.4, alpha: 1)
         self.pauseButton.setTitleColor(UIColor.white, for: .normal)
         
-        if MPMusicPlayerController.systemMusicPlayer.nowPlayingItem != nil {
-            self.nowPlayingBackgound.isHidden = false
-            if MPMusicPlayerController.systemMusicPlayer.playbackState == .playing {
-                self.playButton.imageView?.image = #imageLiteral(resourceName: "baseline_pause_black_48pt")
-            } else {
-                self.playButton.imageView?.image = #imageLiteral(resourceName: "baseline_play_arrow_black_48pt")
-            }
-        } else {
-            self.nowPlayingBackgound.isHidden = true
-        }
+        self.updateNowPlaying()
 
         LocationProvider.shared.beginRecordingActivity()
         
@@ -128,13 +123,11 @@ class ProgressViewController : UIViewController {
  
     }
     
-    @objc 2func toggleDebug() {
+    @objc func toggleDebug() {
         self.debugLabel.isHidden = !self.debugLabel.isHidden
     }
     
-    @objc func tick() {
-        let lm = LocationProvider.shared
-        
+    func updateNowPlaying() {
         if let item = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem {
             self.nowPlayingBackgound.isHidden = false
             if MPMusicPlayerController.systemMusicPlayer.playbackState == .playing {
@@ -142,13 +135,19 @@ class ProgressViewController : UIViewController {
             } else {
                 self.playButton.imageView?.image = #imageLiteral(resourceName: "baseline_play_arrow_black_48pt")
             }
-
+            
             self.albumArtwork.image = item.artwork?.image(at: self.albumArtwork.frame.size)
             self.trackTitle.text = item.title
             self.trackMeta.text = "\(item.artist ?? "") • \(item.albumTitle ?? "")"
         } else {
             self.nowPlayingBackgound.isHidden = true
         }
+    }
+    
+    @objc func tick() {
+        let lm = LocationProvider.shared
+        
+        updateNowPlaying()
 //        print(MPMusicPlayerController.systemMusicPlayer.nowPlayingItem?.title)
 //        MPMusicPlayerController.systemMusicPlayer.nowPlayingItem?.artwork?.image(at: self.bounds.size)
         
@@ -162,7 +161,7 @@ class ProgressViewController : UIViewController {
         
         let min = Int(floor(Double(elapsed) / 60.0))
         let sec = elapsed % 60
-        let pace = lm.activity?.lastKnownPosition?.speed ?? 0 * 0.0372823
+        let pace = lm.activity?.lastKnownPosition?.speed ?? 0 * 26.8224 // magic: 26.8224 = conversion factor (m/s -> min/mi)
         print(elapsed, min, sec)
         self.timerLabel.text = String(format: "%d:%02ds", min, sec)
         let metric = false
@@ -187,7 +186,11 @@ class ProgressViewController : UIViewController {
             let estimate = Int(pace)
             let estmin = Int(floor(Double(estimate) / 60.0))
             let estsec = estimate % 60
-            self.mileTimeLabel.text = String(format: "%d:%02d pace", estmin, estsec)
+            if pace > 0 {
+                self.mileTimeLabel.text = String(format: "%d:%02d min/mi", estmin, estsec)
+            } else {
+                self.mileTimeLabel.text = "-:-- min/mi"
+            }
             
             
             if travelledDistance > lastSplit {
