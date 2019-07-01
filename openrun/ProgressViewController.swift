@@ -25,8 +25,8 @@ class ProgressViewController : UIViewController {
     @IBOutlet weak var trackMeta: UILabel!
     
     @IBOutlet weak var playButton : UIButton!
-    @IBOutlet weak var nextButton : UIButton!
-    @IBOutlet weak var previousButton : UIButton!
+//    @IBOutlet weak var nextButton : UIButton!
+//    @IBOutlet weak var previousButton : UIButton!
     @IBOutlet weak var progressBar : UIProgressView!
     
     @IBOutlet weak var stopButton : SolidButton!
@@ -67,6 +67,8 @@ class ProgressViewController : UIViewController {
     
     var recognizer : UITapGestureRecognizer?
     var unitToggleRecognizer : UITapGestureRecognizer?
+    var swipeNextRecognizer : UISwipeGestureRecognizer?
+    var swipeLastRecognizer: UISwipeGestureRecognizer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +87,17 @@ class ProgressViewController : UIViewController {
         self.mileTimeLabel.isUserInteractionEnabled = true
         self.unitToggleRecognizer = unitToggleRecognizer
         
+        let swipeNextRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(self.nextSong))
+        swipeNextRecognizer.direction = .left
+        self.nowPlayingBackgound.addGestureRecognizer(swipeNextRecognizer)
+        self.nowPlayingBackgound.isUserInteractionEnabled = true
+        self.swipeNextRecognizer = swipeNextRecognizer
+        
+        let swipeLastRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(self.previousSong))
+        swipeLastRecognizer.direction = .right
+        self.nowPlayingBackgound.addGestureRecognizer(swipeLastRecognizer)
+        self.nowPlayingBackgound.isUserInteractionEnabled = true
+        self.swipeLastRecognizer = swipeLastRecognizer
         
         self.timerLabel.textColor = UIColor.white
         self.distanceLabel.textColor = UIColor.white
@@ -97,9 +110,9 @@ class ProgressViewController : UIViewController {
         self.albumArtwork.layer.cornerRadius = 5
         self.albumArtwork.layer.masksToBounds = true
         self.nowPlayingBackgound.backgroundColor = UIColor.darkGray
-        self.playButton.tintColor = UIColor.white
-        self.nextButton.tintColor = UIColor.white
-        self.previousButton.tintColor = UIColor.white
+//        self.playButton.tintColor = UIColor.white
+//        self.nextButton.tintColor = UIColor.white
+//        self.previousButton.tintColor = UIColor.white
         self.debugLabel.isHidden = true
         self.progressBar.trackTintColor = UIColor.clear
         self.progressBar.progressTintColor = UIColor.white
@@ -185,13 +198,20 @@ class ProgressViewController : UIViewController {
         let min = Int(floor(Double(elapsed) / 60.0))
         let sec = elapsed % 60
 //        let
-        let pace : Double
+        var pace : Double
         
+        
+        pace = lm.activity?.lastKnownPosition?.speed ?? 0 * 2.23694 // miles / hour
+
         if enableInvertedUnits {
-            pace = lm.activity?.lastKnownPosition?.speed ?? 0 * 2.23694
-        } else {
-            pace = lm.activity?.lastKnownPosition?.speed ?? 0 * 26.8224 // magic: 26.8224 = conversion factor (m/s -> min/mi)
+            pace = (1 / pace) // hours / mile
         }
+            
+            
+            
+//        } else {
+//            pace = lm.activity?.lastKnownPosition?.speed ?? 0 * 26.8224 // magic: 26.8224 = conversion factor (m/s -> min/mi)
+//        }
         
         print(elapsed, min, sec)
         self.timerLabel.text = String(format: "%d:%02ds", min, sec)
@@ -206,14 +226,16 @@ class ProgressViewController : UIViewController {
             let td = floor(lm.activity?.totalDistance ?? 0)
             self.distanceLabel.text = String(format: "%.2fmi", (td / 5280.0)) // \(round((td / 5280.0) * 1000.0) / 1000.0)mi"
         }
-        
-        if travelledDistance > 0 {
+        if pace != Double.infinity && pace != -Double.infinity && pace != Double.nan {
+            self.mileTimeLabel.text = "Start Moving!"
+        }
+        else if travelledDistance > 0 {
             let estimate = Int(pace)
             let estmin = Int(floor(Double(estimate) / 60.0))
             let estsec = estimate % 60
 
             if self.enableInvertedUnits {
-                self.mileTimeLabel.text = String(format: "%.1f mph", pace)
+                self.mileTimeLabel.text = String(format: "%.2f mph", pace)
             } else {
                 if pace > 0 {
                     self.mileTimeLabel.text = String(format: "%d:%02d min/mi", estmin, estsec)

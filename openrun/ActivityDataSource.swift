@@ -16,6 +16,9 @@ class ActivityDataSource : NSObject, UICollectionViewDataSource, UICollectionVie
         ("Running", #imageLiteral(resourceName: "baseline_directions_run_black_48pt"), "activity.run"),
         ("Walking", #imageLiteral(resourceName: "baseline_directions_walk_black_48pt"), "activity.walk"),
         ("Cycling", #imageLiteral(resourceName: "baseline_directions_bike_black_48pt"), "activity.cycle"),
+        ("Hiking",  #imageLiteral(resourceName: "baseline_terrain_black_48pt"), "activity.hiking"),
+        ("Driving",  #imageLiteral(resourceName: "baseline_drive_eta_black_48pt"), "activity.driving"),
+        ("Generic",  #imageLiteral(resourceName: "baseline_my_location_black_48pt"), "activity.gps"),
         ("Other", #imageLiteral(resourceName: "baseline_more_horiz_black_48pt"), "activity.other")
     ]
     
