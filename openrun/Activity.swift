@@ -44,7 +44,6 @@ class Activity {
         if let last = data.last {
             totalDistance += last.distance(from: point)
             print("got dist from last: \(last.distance(from: point))")
-            
         }
         
         

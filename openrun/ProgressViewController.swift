@@ -25,8 +25,6 @@ class ProgressViewController : UIViewController {
     @IBOutlet weak var trackMeta: UILabel!
     
     @IBOutlet weak var playButton : UIButton!
-//    @IBOutlet weak var nextButton : UIButton!
-//    @IBOutlet weak var previousButton : UIButton!
     @IBOutlet weak var progressBar : UIProgressView!
     
     @IBOutlet weak var stopButton : SolidButton!
@@ -36,7 +34,7 @@ class ProgressViewController : UIViewController {
     let speechSynthesizer = AVSpeechSynthesizer()
     var lastSplit = 0.25
     var enableInvertedUnits = true
-    
+    var metric = false
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -189,7 +187,7 @@ class ProgressViewController : UIViewController {
         
         
         if let coordinate = lm.location?.location {
-            self.debugLabel.text = "Samples: \(LocationProvider.shared.activity?.data.count ?? 0)\nLat:\(coordinate.coordinate.latitude),\nLng:\(coordinate.coordinate.longitude),\nAlt:\(coordinate.altitude)"
+            self.debugLabel.text = "Samples: \(LocationProvider.shared.activity?.data.count ?? 0)\nLat:\(coordinate.coordinate.latitude),\nLng:\(coordinate.coordinate.longitude),\nAlt:\(coordinate.altitude)\nDist:\(lm.activity?.totalDistance ?? 0)m\nAvg. Speed:\(lm.activity?.averageSpeed ?? 0)m/s\nLast Speed:\(lm.activity?.lastKnownPosition?.speed ?? 0)m/s"
         } else {
             self.debugLabel.text = "Location Unknown"
         }
@@ -197,48 +195,53 @@ class ProgressViewController : UIViewController {
         
         let min = Int(floor(Double(elapsed) / 60.0))
         let sec = elapsed % 60
-//        let
-        var pace : Double
-        
-        
-        pace = lm.activity?.lastKnownPosition?.speed ?? 0 * 2.23694 // miles / hour
 
-        if enableInvertedUnits {
-            pace = (1 / pace) // hours / mile
+        // Store pace
+        var pace : Double
+
+        // Calculate pace
+        if let speed = lm.activity?.lastKnownPosition?.speed  {
+            if !metric {
+                pace = speed * 2.23694 // miles / hour
+            } else {
+                pace = speed * 3.6 // km / hour
+            }
+            
+            // Invert from units / hr -> minutes / unit
+            if enableInvertedUnits {
+                pace = (1 / pace) * 60
+            }
+        } else {
+            pace = 0
         }
-            
-            
-            
-//        } else {
-//            pace = lm.activity?.lastKnownPosition?.speed ?? 0 * 26.8224 // magic: 26.8224 = conversion factor (m/s -> min/mi)
-//        }
         
-        print(elapsed, min, sec)
+
+        
         self.timerLabel.text = String(format: "%d:%02ds", min, sec)
-        let metric = false
         var travelledDistance : Double!
 
         if metric {
             travelledDistance = floor(lm.activity?.totalDistance ?? 0) / 1000.0
-            self.distanceLabel.text = "\(floor(lm.activity?.totalDistance ?? 0) / 1000.0)km"
+            self.distanceLabel.text = "\(travelledDistance ?? 0)km"
         } else {
             travelledDistance = round((floor(lm.activity?.totalDistance ?? 0) / 5280.0) * 1000.0) / 1000.0
             let td = floor(lm.activity?.totalDistance ?? 0)
-            self.distanceLabel.text = String(format: "%.2fmi", (td / 5280.0)) // \(round((td / 5280.0) * 1000.0) / 1000.0)mi"
+            self.distanceLabel.text = String(format: "%.2fmi", (td * 0.000621371)) // \(round((td / 5280.0) * 1000.0) / 1000.0)mi"
         }
-        if pace != Double.infinity && pace != -Double.infinity && pace != Double.nan {
+        
+        // If the pace is Infinity / NaN, it's usually because we're getting an infinite result.
+        if pace == Double.infinity || pace == -Double.infinity || pace == Double.nan {
             self.mileTimeLabel.text = "Start Moving!"
-        }
-        else if travelledDistance > 0 {
+        } else if travelledDistance > 0 {
             let estimate = Int(pace)
             let estmin = Int(floor(Double(estimate) / 60.0))
             let estsec = estimate % 60
 
-            if self.enableInvertedUnits {
-                self.mileTimeLabel.text = String(format: "%.2f mph", pace)
+            if !self.enableInvertedUnits {
+                self.mileTimeLabel.text = String(format: "%.2f \(metric ? "kph" : "mph")", pace)
             } else {
                 if pace > 0 {
-                    self.mileTimeLabel.text = String(format: "%d:%02d min/mi", estmin, estsec)
+                    self.mileTimeLabel.text = String(format: "%.2f \(metric ? "min/km" : "min/mi")", Float(pace))
                 } else {
                     self.mileTimeLabel.text = "0:00 min/mi"
                 }
