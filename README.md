@@ -20,5 +20,5 @@ A private run tracking app - no telemetry, web services, or sharing.
 
 ## "WONTFIX"
 - Spotify support is *NOT PLANNED*. This requires bundling their framework into the app.
-  - This may be revisited if playback control becomes possible under a similar API as the music app.
+  - This may be revisited if playback control becomes possible under a similar API as the music app, or [this API](https://developer.spotify.com/documentation/web-api/reference/player/skip-users-playback-to-next-track/) (currently in beta) allows us to preform the required actions.
   
